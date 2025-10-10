@@ -1,0 +1,31 @@
+repos:
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v4.6.0
+    hooks:
+      - id: end-of-file-fixer
+        stages: [pre-commit]
+      - id: trailing-whitespace
+        stages: [pre-commit]
+        # - repo: local
+        #hooks:
+        #- id: print TODOs to console
+        #name: ToDos
+        # description: Print TODOs to console
+        #language: system
+        #entry: grep -nH "TODO"
+
+  # - repo: https://github.com/NixOS/nixfmt
+  #rev:  d0c0cda4fe6b7ae2b9aa37f3ee15e6412573eb01
+  # hooks:
+  #   - id: nixfmt
+
+  - repo: https://github.com/commitizen-tools/commitizen
+    rev: v3.29.1
+    hooks:
+      - id: commitizen
+        stages: [commit-msg]
+
+        #- repo: https://github.com/JohnnyMorganz/StyLua
+        #rev: v0.20.0
+        #hooks:
+        #- id: stylua # or stylua-system / stylua-github

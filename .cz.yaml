@@ -1,0 +1,103 @@
+---
+commitizen:
+  annotated_tag: true
+  bump_message: "bump: release $current_version \u2192 $new_version"
+  changelog_file: CHANGELOG.md
+  customize:
+    bump_map:
+      break: MAJOR
+      bugfix: PATCH
+      docs: PATCH
+      feature: MINOR
+      hotfix: PATCH
+      perf: MINOR
+      refactor: PATCH
+      style: PATCH
+      test: MINOR
+    bump_pattern: ^(break|feature|bugfix|hotfix|docs|performance|refactor|test|style)
+    change_type_map:
+      break: Breaking Changes
+      bugfix: Fix
+      docs: Cosmetic
+      feature: Feature
+      hotfix: Fix
+      performance: Feature
+      refactor: Cosmetic
+      style: Cosmetic
+      test: Test
+    change_type_order:
+    - BREAKING CHANGE
+    - feature
+    - performance
+    - bugfix
+    - hotfix
+    - test
+    - refactor
+    - docs
+    - style
+    changelog_pattern: ^(break|bump|feature|bugfix|hotfix|docs|performance|refactor|test|style)?(!)?
+    commit_parser: ^(?P<change_type>feature|bugfix|hotfix|docs|performance|refactor|test|style):\s(?P<message>.*)?
+    example: 'feature: this feature enable customize through config file'
+    message_template: '{{ change_type }}: {{ message }}{% if body %}
+
+
+      {{ body }}{% endif %}'
+    questions:
+    - choices:
+      - name: 'feature:     New feature'
+        value: feature
+      - name: 'bugfix:      Bugfix'
+        value: bugfix
+      - name: 'hotfix:      Emergency fix'
+        value: hotfix
+      - name: 'test:        Change to tests'
+        value: test
+      - name: 'docs:        Change to documentation'
+        value: docs
+      - name: 'refactor:    Code refactoring'
+        value: refactor
+      - name: 'performance: Performance improvement'
+        value: performance
+      - name: 'style:       Change to the code formatting'
+        value: style
+      - name: 'break:       BREAKING CHANGE - BREAKS BACKWARDS COMPATIBILITY AND WILL
+          CREATE A NEW MAJOR VERSION'
+        value: break
+      message: Select the type of change you are committing
+      name: change_type
+      type: list
+    - message: 'Commit Title:'
+      name: message
+      type: input
+    - message: 'Longer commit message (one line - leave empty to skip):'
+      name: body
+      type: input
+    schema: '<type>: <body>'
+    schema_pattern: (break|bump|feature|bugfix|hotfix|docs|performance|refactor|test|style):(\s.*)
+  name: cz_customize
+  style:
+  - - qmark
+    - fg:#ff9d00 bold
+  - - question
+    - bold
+  - - answer
+    - fg:#ff9d00 bold
+  - - pointer
+    - fg:#ff9d00 bold
+  - - highlighted
+    - fg:#ff9d00 bold
+  - - selected
+    - fg:#cc5454
+  - - separator
+    - fg:#cc5454
+  - - instruction
+    - ''
+  - - text
+    - ''
+  - - disabled
+    - fg:#858585 italic
+  tag_format: $major.$minor.$patch
+  update_changelog_on_bump: true
+  use_shortcuts: true
+  version: 0.0.1
+
