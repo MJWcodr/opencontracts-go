@@ -80,7 +80,7 @@ type Tender struct {
 }
 
 type MonetaryValue struct {
-	Amount   int    `json:"amount"`
+	Amount   float64   `json:"amount"`
 	Currency string `json:"currency"`
 }
 
