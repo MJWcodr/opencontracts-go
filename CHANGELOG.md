@@ -39,3 +39,21 @@
 ### Fix
 
 - initial version
+
+## v0.3.0 (2025-10-14)
+
+### Feature
+
+- Add light extension support
+- Add strict parsing
+- add additional fields
+
+### Fix
+
+- change versioning scheme
+- change monetary amount to float
+- remove typst build
+- remove from .gitignore
+- add working example
+- add pre-commit
+- initial version
