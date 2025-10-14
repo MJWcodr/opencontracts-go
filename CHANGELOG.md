@@ -1,3 +1,9 @@
+## 0.2.0 (2025-10-14)
+
+### Feature
+
+- Add light extension support
+
 ## 0.1.2 (2025-10-14)
 
 ### Fix
