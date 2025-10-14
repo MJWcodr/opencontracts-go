@@ -1,4 +1,4 @@
-module github.com/MJWcodr/opencontracts-go
+module github.com/mjwcodr/opencontracts-go
 
 go 1.25.0
 
