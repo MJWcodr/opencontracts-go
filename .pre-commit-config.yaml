@@ -14,11 +14,6 @@ repos:
         #language: system
         #entry: grep -nH "TODO"
 
-  # - repo: https://github.com/NixOS/nixfmt
-  #rev:  d0c0cda4fe6b7ae2b9aa37f3ee15e6412573eb01
-  # hooks:
-  #   - id: nixfmt
-
   - repo: https://github.com/commitizen-tools/commitizen
     rev: v3.29.1
     hooks:
