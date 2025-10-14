@@ -96,7 +96,7 @@ commitizen:
     - ''
   - - disabled
     - fg:#858585 italic
-  tag_format: $major.$minor.$patch
+  tag_format: v$major.$minor.$patch
   update_changelog_on_bump: true
   use_shortcuts: true
   version: 0.2.2
