@@ -1,3 +1,9 @@
+## 0.2.2 (2025-10-14)
+
+### Fix
+
+- change monetary amount to float
+
 ## 0.2.1 (2025-10-14)
 
 ### Fix
