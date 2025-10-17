@@ -125,7 +125,7 @@ type TenderItem struct {
 	RelatedLot                string          `json:"relatedLot"`
 	DeliveryAddress           Address         `json:"deliveryAddress"`
 	Description               string          `json:"description"`
-	Quantity                  int             `json:"quantity"`
+	Quantity                  float32             `json:"quantity"`
 	Unit                      TenderUnit      `json:"unit"`
 	DeliveryLocation 					DeliverLocation `json:"deliveryLocation"`	
 }
