@@ -99,4 +99,4 @@ commitizen:
   tag_format: v$major.$minor.$patch
   update_changelog_on_bump: true
   use_shortcuts: true
-  version: 0.3.1
+  version: 0.3.2
