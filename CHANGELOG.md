@@ -40,6 +40,12 @@
 
 - initial version
 
+## v0.3.3 (2025-10-31)
+
+### Fix
+
+- add publishedDate as Date
+
 ## v0.3.2 (2025-10-17)
 
 ### Fix
