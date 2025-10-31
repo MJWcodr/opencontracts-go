@@ -5,6 +5,7 @@ import (
 	"encoding/json"
 	"os"
 	"slices"
+	"time"
 
 	"github.com/charmbracelet/log"
 )
@@ -175,7 +176,7 @@ type Publisher struct {
 type OpenContract struct {
 	Version           string    `json:"version"`
 	URI               string    `json:"uri"`
-	PublishedDate     string    `json:"publishedDate"`
+	PublishedDate     time.Time    `json:"publishedDate"`
 	Extensions        []string  `json:"extensions"`
 	Releases          []Release `json:"releases"`
 	Publisher         Publisher `json:"publisher"`

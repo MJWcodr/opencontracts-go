@@ -6,6 +6,7 @@ import (
 	"path/filepath"
 	"reflect"
 	"testing"
+	"time"
 
 	//"github.com/stretchr/testify/assert"
 )
@@ -16,7 +17,7 @@ var (
 	exampleDataFolderBroken = "./exampleData/broken"
 	validOpenContract = OpenContract{
 		URI:           "http://example.com/contract/1",
-		PublishedDate: "2023-01-01T12:00:00Z",
+		PublishedDate: time.Date(2023, 1, 1, 0, 0, 0, 0, time.UTC),
 		Extensions:    []string{"ext1", "ext2"},
 		Releases: []Release{
 			{
