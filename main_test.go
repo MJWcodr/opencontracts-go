@@ -66,7 +66,10 @@ func TestParseJSONToBiddingOffer(t *testing.T) {
 			URI:      "http://example.com/contract/1",
 			Releases: []Release{},
 		}
-		jsonBytes, _ := json.Marshal(emptyReleasesContract)
+		jsonBytes, err := json.Marshal(emptyReleasesContract)
+		if err != nil {
+			t.Fatalf("Failed to marshal test data: %v", err)
+		}
 		ParseJSONToBiddingOffer(jsonBytes, false)
 	})
 	// ...existing code for other test cases...
