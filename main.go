@@ -77,7 +77,7 @@ type Tender struct {
 	AwardPeriod                Period        `json:"awardPeriod"`
 	ContractPeriod             Period        `json:"contractPeriod"`
 	HasEnquiries               bool          `json:"hasEnquiries"`
-	Lots                       []any         `json:"lots" extensions:lots` // Lots extension
+	Lots                       []any         `json:"lots"` // Lots extension
 }
 
 type MonetaryValue struct {
@@ -119,16 +119,16 @@ type DeliverLocation struct {
 }
 
 type TenderItem struct {
-	ID                        string                   `json:"id"`
-	Classification            TenderItemClassification `json:"classification"`
-	AdditionalClassifications []TenderItemClassification
-	Lots                      []TenderItemLot `json:"lots"`
-	RelatedLot                string          `json:"relatedLot"`
-	DeliveryAddress           Address         `json:"deliveryAddress"`
-	Description               string          `json:"description"`
-	Quantity                  float32             `json:"quantity"`
-	Unit                      TenderUnit      `json:"unit"`
-	DeliveryLocation 					DeliverLocation `json:"deliveryLocation"`	
+	ID                        string                     `json:"id"`
+	Classification            TenderItemClassification   `json:"classification"`
+	AdditionalClassifications []TenderItemClassification `json:"additionalClassifications"`
+	Lots                      []TenderItemLot            `json:"lots"`
+	RelatedLot                string                     `json:"relatedLot"`
+	DeliveryAddress           Address                    `json:"deliveryAddress"`
+	Description               string                     `json:"description"`
+	Quantity                  float32                    `json:"quantity"`
+	Unit                      TenderUnit                 `json:"unit"`
+	DeliveryLocation          DeliverLocation            `json:"deliveryLocation"`
 }
 
 type TenderItemClassification struct {
@@ -250,9 +250,7 @@ func (oc *OpenContract) checkExtensions() error {
 func ParseJSONToBiddingOffer(byteArray []byte, strict bool) OpenContract {
 	var openContract OpenContract
 
-	
-	reader := bytes.NewBuffer(byteArray)
-	decoder := json.NewDecoder(reader)
+	decoder := json.NewDecoder(bytes.NewReader(byteArray))
 
 	if strict {
 		decoder.DisallowUnknownFields()
@@ -266,6 +264,9 @@ func ParseJSONToBiddingOffer(byteArray []byte, strict bool) OpenContract {
 	// check for required fields
 	if openContract.URI == "" {
 		panic("URI is required")
+	}
+	if len(openContract.Releases) == 0 {
+		panic("At least one release is required")
 	}
 	if openContract.Releases[0].ID == "" {
 		panic("Releases.ID is required")

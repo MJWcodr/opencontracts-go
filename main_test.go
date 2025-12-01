@@ -55,6 +55,20 @@ func TestParseJSONToBiddingOffer(t *testing.T) {
 			t.Errorf("Expected URI %s, got %s", validOpenContract.URI, result.URI)
 		}
 	})
+
+	t.Run("Empty releases panics", func(t *testing.T) {
+		defer func() {
+			if r := recover(); r == nil {
+				t.Errorf("Expected panic for empty releases")
+			}
+		}()
+		emptyReleasesContract := OpenContract{
+			URI:      "http://example.com/contract/1",
+			Releases: []Release{},
+		}
+		jsonBytes, _ := json.Marshal(emptyReleasesContract)
+		ParseJSONToBiddingOffer(jsonBytes, false)
+	})
 	// ...existing code for other test cases...
 }
 
