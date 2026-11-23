@@ -40,6 +40,12 @@
 
 - initial version
 
+## v0.4.0 (2026-11-23)
+
+### Feature
+
+- preserve award date value and suppliers
+
 ## v0.3.3 (2025-10-31)
 
 ### Fix
