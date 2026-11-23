@@ -7,15 +7,14 @@ import (
 	"reflect"
 	"testing"
 	"time"
-
 	//"github.com/stretchr/testify/assert"
 )
 
 // Test data fixtures
 var (
-	exampleDataFolderValid = "./exampleData/valid"
+	exampleDataFolderValid  = "./exampleData/valid"
 	exampleDataFolderBroken = "./exampleData/broken"
-	validOpenContract = OpenContract{
+	validOpenContract       = OpenContract{
 		URI:           "http://example.com/contract/1",
 		PublishedDate: time.Date(2023, 1, 1, 0, 0, 0, 0, time.UTC),
 		Extensions:    []string{"ext1", "ext2"},
@@ -56,6 +55,20 @@ func TestParseJSONToBiddingOffer(t *testing.T) {
 		}
 	})
 	// ...existing code for other test cases...
+}
+
+func TestTenderAwardSerialization(t *testing.T) {
+	input := []byte(`{"id":"award-1","status":"active","date":"2026-01-15T10:00:00Z","value":{"amount":125000.50,"currency":"EUR"},"suppliers":[{"id":"supplier-1","name":"Beispiel GmbH"}],"relatedLots":["lot-1"]}`)
+	var award TenderAward
+	if err := json.Unmarshal(input, &award); err != nil {
+		t.Fatalf("Failed to parse award: %v", err)
+	}
+	if award.Date != "2026-01-15T10:00:00Z" || award.Value.Amount != 125000.50 || award.Value.Currency != "EUR" {
+		t.Fatalf("Award date/value not preserved: %+v", award)
+	}
+	if len(award.Suppliers) != 1 || award.Suppliers[0].ID != "supplier-1" || award.Suppliers[0].Name != "Beispiel GmbH" {
+		t.Fatalf("Award suppliers not preserved: %+v", award.Suppliers)
+	}
 }
 
 func TestParseOpenContractToJSON(t *testing.T) {
@@ -181,7 +194,7 @@ func TestComplexStructSerialization(t *testing.T) {
 	}
 }
 
-func TestExampleData(t *testing.T){
+func TestExampleData(t *testing.T) {
 	// List all files
 	files, err := os.ReadDir(exampleDataFolderValid)
 	if err != nil {
@@ -190,12 +203,11 @@ func TestExampleData(t *testing.T){
 
 	// Decode Files
 	for _, file := range files {
-		fileName := exampleDataFolderValid + "/" + file.Name() 
+		fileName := exampleDataFolderValid + "/" + file.Name()
 		f, err := os.ReadFile(fileName)
 		if err != nil {
 			t.Fatal(err)
 		}
 		ParseJSONToBiddingOffer(f, true)
-	}	
+	}
 }
-

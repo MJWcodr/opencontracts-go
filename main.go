@@ -81,8 +81,8 @@ type Tender struct {
 }
 
 type MonetaryValue struct {
-	Amount   float64   `json:"amount"`
-	Currency string `json:"currency"`
+	Amount   float64 `json:"amount"`
+	Currency string  `json:"currency"`
 }
 
 type Period struct {
@@ -109,9 +109,12 @@ type TenderProcuringEntity struct {
 }
 
 type TenderAward struct {
-	ID          string   `json:"id"`
-	Status      string   `json:"status"`
-	RelatedLots []string `json:"relatedLots"`
+	ID          string        `json:"id"`
+	Status      string        `json:"status"`
+	Date        string        `json:"date"`
+	Value       MonetaryValue `json:"value"`
+	Suppliers   []Party       `json:"suppliers"`
+	RelatedLots []string      `json:"relatedLots"`
 }
 
 type DeliverLocation struct {
@@ -126,9 +129,9 @@ type TenderItem struct {
 	RelatedLot                string          `json:"relatedLot"`
 	DeliveryAddress           Address         `json:"deliveryAddress"`
 	Description               string          `json:"description"`
-	Quantity                  float32             `json:"quantity"`
+	Quantity                  float32         `json:"quantity"`
 	Unit                      TenderUnit      `json:"unit"`
-	DeliveryLocation 					DeliverLocation `json:"deliveryLocation"`	
+	DeliveryLocation          DeliverLocation `json:"deliveryLocation"`
 }
 
 type TenderItemClassification struct {
@@ -176,7 +179,7 @@ type Publisher struct {
 type OpenContract struct {
 	Version           string    `json:"version"`
 	URI               string    `json:"uri"`
-	PublishedDate     time.Time    `json:"publishedDate"`
+	PublishedDate     time.Time `json:"publishedDate"`
 	Extensions        []string  `json:"extensions"`
 	Releases          []Release `json:"releases"`
 	Publisher         Publisher `json:"publisher"`
@@ -243,14 +246,12 @@ func (oc *OpenContract) checkExtensions() error {
 
 	}
 
-
 	return nil
 }
 
 func ParseJSONToBiddingOffer(byteArray []byte, strict bool) OpenContract {
 	var openContract OpenContract
 
-	
 	reader := bytes.NewBuffer(byteArray)
 	decoder := json.NewDecoder(reader)
 
